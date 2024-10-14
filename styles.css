@@ -1,0 +1,65 @@
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #1a202c;
+    color: #ffffff;
+}
+
+#root {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+#streamForm {
+    background-color: #2d3748;
+    padding: 2rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+#contentTypeBtn {
+    transition: all 0.3s ease;
+}
+
+#contentTypeBtn:hover {
+    transform: translateY(-2px);
+}
+
+#videoContainer {
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+}
+
+#videoContainer:hover {
+    transform: scale(1.01);
+}
+
+#contentInfo {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.5s ease;
+}
+
+#contentInfo.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+input[type="text"], input[type="number"] {
+    background-color: #4a5568;
+    color: #ffffff;
+    border: none;
+    border-radius: 0.25rem;
+    padding: 0.5rem;
+}
+
+input[type="text"]::placeholder, input[type="number"]::placeholder {
+    color: #a0aec0;
+}
+
+button[type="submit"] {
+    transition: all 0.3s ease;
+}
+
+button[type="submit"]:hover {
+    transform: scale(1.05);
+}
