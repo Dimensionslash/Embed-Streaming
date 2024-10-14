@@ -15,7 +15,7 @@ const embedDomains = ['vidsrc.to', 'vidsrc.me', 'vidsrc.xyz', 'vidsrc.net'];
 let currentDomainIndex = 0;
 let contentType = 'movie';
 
-const OMDB_API_KEY = 'YOUR_OMDB_API_KEY'; // Replace with your actual OMDb API key
+const OMDB_API_KEY = 'd57def1f'; // Replace with your actual OMDb API key
 
 // Load saved data from cookies
 window.onload = () => {
