@@ -76,7 +76,7 @@ function updateContentTypeButton() {
 
 async function fetchContentInfo(imdbId) {
     try {
-        const response = await fetch(`http://www.omdbapi.com/?apikey=${OMDB_API_KEY}&i=${imdbId}`);
+        const response = await fetch(`https://www.omdbapi.com/?apikey=${OMDB_API_KEY}&i=${imdbId}`);
         const data = await response.json();
         if (data.Response === "True") {
             contentTitle.textContent = data.Title;
