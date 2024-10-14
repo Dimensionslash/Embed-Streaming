@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="referrer" content="origin">
+    <title>Embed Streaming</title>
+    <link rel="icon" type="image/icon" href="/static/favicon.ico">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="bg-gray-900 text-white">
+    <div id="root" class="container mx-auto p-4">
+        <h1 class="text-4xl font-bold text-center mb-8 text-blue-400">Embed Streaming</h1>
+        
+        <form id="streamForm" class="mb-8">
+            <div class="mx-auto flex max-w-3xl flex-wrap items-center justify-center gap-4">
+                <div class="items-center gap-4 max-sm:flex max-sm:w-full max-sm:flex-auto">
+                    <button id="contentTypeBtn" type="button" class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-blue-500 text-white hover:bg-blue-600 h-10 px-4 py-2 gap-3 capitalize">
+                        <span>movie</span>
+                        <span class="transition-transform ease-in-out rotate-0">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-down"><path d="m6 9 6 6 6-6"></path></svg>
+                        </span>
+                    </button>
+                </div>
+                <div class="flex h-12 flex-1 items-center gap-1 overflow-hidden rounded-md bg-gray-800 px-4 py-2 transition-all ease-out">
+                    <div class="hidden text-gray-400 md:block">
+                        <p id="embedPrefix">https://vidsrc.to/embed/movie</p>
+                    </div>
+                    <span class="hidden text-gray-400 md:block">/</span>
+                    <input id="contentId" placeholder="TMDB or IMDB ID" class="appearance-none border-none bg-transparent outline-none ring-0 transition-all ease-in-out focus:border-0 focus:ring-0 placeholder:text-sm placeholder:text-gray-500 w-full text-white" value="">
+                    <div id="tvInputs" class="flex items-center gap-2" style="display: none;">
+                        <span class="text-gray-400">//</span>
+                        <input type="number" id="seasonInput" placeholder="Season" class="w-14 appearance-none border-none bg-transparent outline-none ring-0 transition-all ease-in-out focus:border-0 focus:ring-0 placeholder:text-sm placeholder:text-gray-500 text-white" value="1">
+                        <span class="text-gray-400">/</span>
+                        <input type="number" id="episodeInput" placeholder="Episode" class="w-14 appearance-none border-none bg-transparent outline-none ring-0 transition-all ease-in-out focus:border-0 focus:ring-0 placeholder:text-sm placeholder:text-gray-500 text-white" value="1">
+                    </div>
+                </div>
+                <button type="submit" class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-green-500 text-white hover:bg-green-600 h-12 w-12">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-play"><polygon points="6 3 20 12 6 21 6 3"></polygon></svg>
+                </button>
+            </div>
+        </form>
+        
+        <div id="videoContainer" class="relative h-60 w-full overflow-hidden rounded-md border bg-black min-[640px]:h-72 md:h-[34rem] xl:h-[38rem] xl:rounded-3xl border-gray-700"></div>
+
+        <div id="contentInfo" class="mt-8 p-6 bg-gray-800 rounded-lg shadow-lg">
+            <h2 id="contentTitle" class="text-2xl font-semibold mb-2 text-blue-400"></h2>
+            <p id="contentDescription" class="text-gray-300"></p>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
