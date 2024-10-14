@@ -8,11 +8,14 @@ const seasonInput = document.getElementById('seasonInput');
 const episodeInput = document.getElementById('episodeInput');
 const contentInfo = document.getElementById('contentInfo');
 const contentTitle = document.getElementById('contentTitle');
+const contentYear = document.getElementById('contentYear');
 const contentDescription = document.getElementById('contentDescription');
 
 const embedDomains = ['vidsrc.to', 'vidsrc.me', 'vidsrc.xyz', 'vidsrc.net'];
 let currentDomainIndex = 0;
 let contentType = 'movie';
+
+const OMDB_API_KEY = 'YOUR_OMDB_API_KEY'; // Replace with your actual OMDb API key
 
 // Load saved data from cookies
 window.onload = () => {
@@ -55,7 +58,7 @@ streamForm.addEventListener('submit', (e) => {
         setCookie('contentId', contentId, 30);
         currentDomainIndex = (currentDomainIndex + 1) % embedDomains.length;
     } else {
-        alert('Please enter a valid TMDB or IMDB ID.');
+        alert('Please enter a valid IMDb ID.');
     }
 });
 
@@ -71,16 +74,22 @@ function updateContentTypeButton() {
     contentTypeBtn.querySelector('span').textContent = contentType;
 }
 
-async function fetchContentInfo(contentId) {
+async function fetchContentInfo(imdbId) {
     try {
-        const response = await fetch(`https://api.themoviedb.org/3/${contentType}/${contentId}?api_key=YOUR_TMDB_API_KEY`);
+        const response = await fetch(`http://www.omdbapi.com/?apikey=${OMDB_API_KEY}&i=${imdbId}`);
         const data = await response.json();
-        contentTitle.textContent = data.title || data.name;
-        contentDescription.textContent = data.overview;
-        contentInfo.classList.add('visible');
+        if (data.Response === "True") {
+            contentTitle.textContent = data.Title;
+            contentYear.textContent = `${data.Year} • ${data.Runtime}`;
+            contentDescription.textContent = data.Plot;
+            contentInfo.classList.add('visible');
+        } else {
+            throw new Error(data.Error);
+        }
     } catch (error) {
         console.error('Error fetching content info:', error);
         contentInfo.classList.remove('visible');
+        alert('Error fetching content information. Please check the IMDb ID and try again.');
     }
 }
 
